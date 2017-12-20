@@ -14,7 +14,7 @@
  * limitations under the License. 
  */
 
-package com.fanwe.lib.serialport;
+package android_serialport_api;
 
 import android.util.Log;
 
@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-class SerialPort
+public class SerialPort
 {
 
 	private static final String TAG = "SerialPort";
