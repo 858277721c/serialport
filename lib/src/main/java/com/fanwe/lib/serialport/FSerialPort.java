@@ -7,7 +7,7 @@ import java.io.OutputStream;
 /**
  * 串口
  */
-public final class FSerialPort implements FISerialPort
+public class FSerialPort implements FISerialPort
 {
     private SerialPort mSerialPort;
 
