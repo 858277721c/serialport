@@ -14,8 +14,15 @@ public class FSerialPort implements FISerialPort
     @Override
     public synchronized void open(String path, int baudrate, int flags) throws Exception
     {
-        closeInternal();
-        mSerialPort = new SerialPort(new File(path), baudrate, flags);
+        try
+        {
+            closeInternal();
+            mSerialPort = new SerialPort(new File(path), baudrate, flags);
+        } catch (Exception e)
+        {
+            closeInternal();
+            throw e;
+        }
     }
 
     @Override
