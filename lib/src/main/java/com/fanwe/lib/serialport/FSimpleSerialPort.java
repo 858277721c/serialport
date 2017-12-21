@@ -1,7 +1,7 @@
 package com.fanwe.lib.serialport;
 
 /**
- * Created by Administrator on 2017/12/21.
+ * 串口
  */
 public abstract class FSimpleSerialPort implements FISerialPortSwitch
 {
@@ -34,6 +34,8 @@ public abstract class FSimpleSerialPort implements FISerialPortSwitch
     public void open(String path, int baudrate, int flags) throws Exception
     {
         mSerialPort.open(path, baudrate, flags);
+        getReadThread().setInputStream(mSerialPort.getInputStream());
+        getReadThread().start();
     }
 
     @Override
@@ -46,6 +48,11 @@ public abstract class FSimpleSerialPort implements FISerialPortSwitch
     public void close()
     {
         mSerialPort.close();
+        if (mReadThread != null)
+        {
+            mReadThread.interrupt();
+            mReadThread = null;
+        }
     }
 
     /**

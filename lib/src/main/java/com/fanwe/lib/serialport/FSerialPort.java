@@ -1,7 +1,5 @@
 package com.fanwe.lib.serialport;
 
-import com.fanwe.lib.serialport.FISerialPort;
-
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
