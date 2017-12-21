@@ -1,5 +1,7 @@
 package com.fanwe.lib.serialport;
 
+import android.text.TextUtils;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,14 +14,39 @@ import android_serialport_api.SerialPort;
 public class FSerialPort implements FISerialPort
 {
     private SerialPort mSerialPort;
+    private Config mConfig;
 
     @Override
-    public synchronized void open(String path, int baudrate, int flags) throws Exception
+    public synchronized void setConfig(Config config)
     {
+        mConfig = config;
+    }
+
+    @Override
+    public synchronized Config getConfig()
+    {
+        return mConfig;
+    }
+
+    @Override
+    public synchronized void open() throws Exception
+    {
+        if (mConfig == null)
+        {
+            throw new NullPointerException("you must invoke setConfig(config) method set a config before this");
+        }
+        if (TextUtils.isEmpty(mConfig.path))
+        {
+            throw new IllegalArgumentException("Config.path must not be null or empty");
+        }
+
+        if (isOpened())
+        {
+            return;
+        }
         try
         {
-            closeInternal();
-            mSerialPort = new SerialPort(new File(path), baudrate, flags);
+            mSerialPort = new SerialPort(new File(mConfig.path), mConfig.baudrate, mConfig.flags);
         } catch (Exception e)
         {
             closeInternal();

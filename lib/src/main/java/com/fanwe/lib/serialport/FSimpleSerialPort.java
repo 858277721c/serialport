@@ -3,9 +3,8 @@ package com.fanwe.lib.serialport;
 /**
  * 串口
  */
-public abstract class FSimpleSerialPort implements FISerialPortSwitch
+public abstract class FSimpleSerialPort extends FSerialPort
 {
-    private FSerialPort mSerialPort = new FSerialPort();
     private FInputStreamReadThread mReadThread;
 
     private FInputStreamReadThread getReadThread()
@@ -31,23 +30,17 @@ public abstract class FSimpleSerialPort implements FISerialPortSwitch
     }
 
     @Override
-    public void open(String path, int baudrate, int flags) throws Exception
+    public synchronized void open() throws Exception
     {
-        mSerialPort.open(path, baudrate, flags);
-        getReadThread().setInputStream(mSerialPort.getInputStream());
+        super.open();
+        getReadThread().setInputStream(getInputStream());
         getReadThread().start();
-    }
-
-    @Override
-    public boolean isOpened()
-    {
-        return mSerialPort.isOpened();
     }
 
     @Override
     public void close()
     {
-        mSerialPort.close();
+        super.close();
         if (mReadThread != null)
         {
             mReadThread.interrupt();
