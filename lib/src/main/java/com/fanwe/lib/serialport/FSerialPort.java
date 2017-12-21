@@ -1,4 +1,4 @@
-package com.fanwe.lib.serialport.impl;
+package com.fanwe.lib.serialport;
 
 import com.fanwe.lib.serialport.FISerialPort;
 
