@@ -1,4 +1,4 @@
-package com.fanwe.lib.serialport;
+package com.sd.lib.serialport;
 
 import android.text.TextUtils;
 

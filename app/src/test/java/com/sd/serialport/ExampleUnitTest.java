@@ -1,4 +1,4 @@
-package com.fanwe.serialport;
+package com.sd.serialport;
 
 import org.junit.Test;
 

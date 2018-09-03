@@ -1,4 +1,4 @@
-package com.fanwe.lib.serialport;
+package com.sd.lib.serialport;
 
 import java.io.InputStream;
 import java.io.OutputStream;

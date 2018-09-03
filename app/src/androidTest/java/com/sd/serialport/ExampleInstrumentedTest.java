@@ -1,4 +1,4 @@
-package com.fanwe.serialport;
+package com.sd.serialport;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

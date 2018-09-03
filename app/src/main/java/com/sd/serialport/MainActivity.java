@@ -1,4 +1,4 @@
-package com.fanwe.serialport;
+package com.sd.serialport;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
